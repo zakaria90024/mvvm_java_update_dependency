@@ -31,7 +31,6 @@ android {
 dependencies {
 
     def lifecycle_version = "2.6.2"
-    def arch_version = "2.2.0"
     def room_version = "2.6.0"
 
     implementation 'androidx.appcompat:appcompat:1.6.1'

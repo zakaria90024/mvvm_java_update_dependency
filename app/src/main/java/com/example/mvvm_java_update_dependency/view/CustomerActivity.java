@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,25 +34,38 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CustomerActivity extends AppCompatActivity implements CustomerCallback {
+public class CustomerActivity extends AppCompatActivity implements CustomerCallback, CustomerAdapter.OnCustomerClickListener {
 
     private CustomerViewModel customarViewModel;
     private ProgressBar mProgressBar;
     private RecyclerView mRecyclerView;
+    private CustomerAdapter customerAdapter;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
+    private  CustomerCallback customerCallback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_customer);
 
         mProgressBar = findViewById(R.id.progressBar);
         mRecyclerView = findViewById(R.id.recyclerView);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
         mRecyclerView.setLayoutManager(gridLayoutManager);
-        mRecyclerView.setHasFixedSize(true);
-        getDataFromApiCall();
+        mRecyclerView.setHasFixedSize(false);
+        //getDataFromApiCall();
+
+
         customarViewModel = new ViewModelProvider(this).get(CustomerViewModel.class);
+        //it's means all call from api
+        customarViewModel.getCustomerAll();
+        customarViewModel.customerMutableLiveData.observe(this, new Observer<List<Customer>>() {
+            @Override
+            public void onChanged(List<Customer> customers) {
+                Toast.makeText(CustomerActivity.this, "cus"+customers.size(), Toast.LENGTH_SHORT).show();
+                setDataToRecyclerView(customers);
+            }
+        });
 
 //        Bundle extras = getIntent().getExtras();
 //        if (extras != null) {
@@ -62,97 +76,103 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
 //
 //        }
         //Disposable for avoid memory leak
-        Disposable disposable = customarViewModel.getAllCustomer().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<Customer>>() {
-                    @Override
-                    public void accept(List<Customer> genres) throws Exception {
-                        Log.d(TAG, "accept: Called");
-                        setDataToRecyclerView(genres);
-                    }
-                });
-
-
-        //Add Disposable
-        compositeDisposable.add(disposable);
-
-        //Check Loading State
-        customarViewModel.getIsLoading().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable Boolean aBoolean) {
-                Log.d(TAG, "onChanged: " + aBoolean);
-                if (aBoolean != null) {
-                    if (aBoolean) {
-                        mRecyclerView.setVisibility(View.VISIBLE);
-                    } else {
-                        mRecyclerView.setVisibility(View.GONE);
-                    }
-                }
-            }
-        });
+//        Disposable disposable = customarViewModel.getAllCustomer().subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<List<Customer>>() {
+//                    @Override
+//                    public void accept(List<Customer> genres) throws Exception {
+//                        Log.d(TAG, "accept: Called");
+//
+//                        setDataToRecyclerView(genres);
+//                    }
+//                });
+//
+//
+//        //Add Disposable
+//        compositeDisposable.add(disposable);
+//
+//
+//
+//        //Check Loading State
+//        customarViewModel.getIsLoading().observe(this, new Observer<Boolean>() {
+//            @Override
+//            public void onChanged(@Nullable Boolean aBoolean) {
+//                Log.d(TAG, "onChanged: " + aBoolean);
+//                if (aBoolean != null) {
+//                    if (aBoolean) {
+//                        mProgressBar.setVisibility(View.VISIBLE);
+//                        Toast.makeText(CustomerActivity.this, "Visible", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        mProgressBar.setVisibility(View.GONE);
+//                        Toast.makeText(CustomerActivity.this, "INVisible", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//        });
 
     }
-
-    private void getDataFromApiCall() {
-
-        APIService service = ApiClient.getRetrofit().create(APIService.class);
-
-        Call<List<Customer>> call = service.getCustomer("259");
-
-            call.enqueue(new Callback<List<Customer>>() {
-                @Override
-                public void onResponse(Call<List<Customer>> call, Response<List<Customer>> response) {
-
-                    if (response.isSuccessful()) {
-                        if (response.body() != null) {
-
-                            List<Customer> doctorModelList = response.body();
-
-                            Toast.makeText(CustomerActivity.this, "onRespon "+doctorModelList.size(), Toast.LENGTH_SHORT).show();
-                            if (doctorModelList.size() > 0) {
-                                Customer Customer;
-                                for(Customer i: doctorModelList){
-                                    new Customer(1, i.getStrCustomerName(), i.getStrPhone(),i.getStraddress());
-
-                                    //onCustomer(Customer);
-                                }
-
-
-//                                for (int i = 0; i < doctorModelList.size(); i++) {
-//                                    if (i == 0) {
-//                                        dbHelper.addDoctor(new DoctorModel(String.valueOf(userId), "New Doctor"));
-//                                    }
-//                                    DoctorModel doctorModel = new DoctorModel();
 //
-//                                    doctorModel = doctorModelList.get(i);
-//                                    doctorModel.setMpo(userId);
+//    private void getDataFromApiCall() {
 //
-//                                    dbHelper.addDoctor(doctorModel);
+//        APIService service = ApiClient.getRetrofit().create(APIService.class);
+//
+//        Call<List<Customer>> call = service.getCustomer("259");
+//
+//            call.enqueue(new Callback<List<Customer>>() {
+//                @Override
+//                public void onResponse(Call<List<Customer>> call, Response<List<Customer>> response) {
+//
+//                    //customerCallback.onCustomer(response.body());
+//
+//                    if (response.isSuccessful()) {
+//                        if (response.body() != null) {
+//
+//                            List<Customer> doctorModelList = response.body();
+//
+//                            Toast.makeText(CustomerActivity.this, "onRespon "+doctorModelList.size(), Toast.LENGTH_SHORT).show();
+//                            if (doctorModelList.size() > 0) {
+//                                Customer Customer;
+//                                for(Customer i: doctorModelList){
+//                                    new Customer(1, i.getStrCustomerName(), i.getStrPhone(),i.getStraddress());
+//
+//                                    //onCustomer(i);
 //                                }
-                            }
-
-
-                        }
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<List<Customer>> call, Throwable t) {
-                    Toast.makeText(CustomerActivity.this, "fail ", Toast.LENGTH_SHORT).show();
-                    //loadingdialog.dismiss();
-                    //swipeRefreshLayout.setRefreshing(true);
-                    //doctor_sync.setClickable(true);
-                    //doctor_sync.setVisibility(View.VISIBLE);
-                }
-            });
-    }
+//
+//                            }
+//
+//
+//                        }
+//
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<List<Customer>> call, Throwable t) {
+//                    customerCallback.onCustomerError(t.getMessage());
+//                    Toast.makeText(CustomerActivity.this, "fail ", Toast.LENGTH_SHORT).show();
+//                    //loadingdialog.dismiss();
+//                    //swipeRefreshLayout.setRefreshing(true);
+//                    //doctor_sync.setClickable(true);
+//                    //doctor_sync.setVisibility(View.VISIBLE);
+//                }
+//            });
+//    }
 
     private void setDataToRecyclerView(List<Customer> genres) {
-        //genreAdapter = new GenreAdapter(genres);
-        //genreAdapter.setItemClickListener(this);
-        //mRecyclerView.setAdapter(genreAdapter);
+        customerAdapter = new CustomerAdapter(genres);
+        customerAdapter.setItemClickListener(this);
+        mRecyclerView.setAdapter(customerAdapter);
     }
+
+//    @Override
+//    public void onCustomer(List<Customer> customerList) {
+//        customarViewModel.insert((Customer) customerList);
+//    }
+//
+//    @Override
+//    public void onCustomerError(String error) {
+//
+//    }
 
     @Override
     public void onCustomer(Customer customerList) {
@@ -162,6 +182,18 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
 
     @Override
     public void onCustomerError(String error) {
+
+    }
+
+    @Override
+    public void onCustomerClick(Customer customer) {
+//
+//        Intent intent = new Intent(CustomerActivity.this,MoviesActivity.class);
+//        intent.putExtra("genre",customer.getGenre());
+//        intent.putExtra("uid",customer.getUid());
+//        startActivity(intent);
+
+        Toast.makeText(this, "Clicked -"+customer.getStrCustomerName(), Toast.LENGTH_SHORT).show();
 
     }
 }

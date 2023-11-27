@@ -8,9 +8,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     //BASE_URL = ""
-    public static final String BASE_URL = "http://192.168.1.83:8080/api/";  //local
+    //public static final String BASE_URL = "http://192.168.1.83:8080/api/";  //local
 
-    //public static final String BASE_URL = "http://182.160.126.21:8082/api/";  //real server3
+    public static final String BASE_URL = "http://182.160.126.21:8082/api/";  //real server3
 
     private static Retrofit retrofit = null;
 
