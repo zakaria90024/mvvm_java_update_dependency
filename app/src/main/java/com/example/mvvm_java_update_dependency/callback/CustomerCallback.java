@@ -5,6 +5,6 @@ import com.example.mvvm_java_update_dependency.model.Customer;
 import java.util.List;
 
 public interface CustomerCallback {
-    void onCustomer(Customer customerList);
-    void onCustomerError(String error);
+    void onCustomerCache(Customer customerList);
+    void onCustomerErrorCache(String error);
 }

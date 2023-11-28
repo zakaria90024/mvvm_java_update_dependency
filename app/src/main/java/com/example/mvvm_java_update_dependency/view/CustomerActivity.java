@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.mvvm_java_update_dependency.R;
 import com.example.mvvm_java_update_dependency.callback.CustomerCallback;
+import com.example.mvvm_java_update_dependency.callback.CustomerCallbackList;
 import com.example.mvvm_java_update_dependency.data.remote.APIService;
 import com.example.mvvm_java_update_dependency.model.Customer;
 import com.example.mvvm_java_update_dependency.network.ApiClient;
@@ -34,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CustomerActivity extends AppCompatActivity implements CustomerCallback, CustomerAdapter.OnCustomerClickListener {
+public class CustomerActivity extends AppCompatActivity implements CustomerCallbackList, CustomerAdapter.OnCustomerClickListener {
 
     private CustomerViewModel customarViewModel;
     private ProgressBar mProgressBar;
@@ -42,7 +43,8 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
     private CustomerAdapter customerAdapter;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    private  CustomerCallback customerCallback;
+    private CustomerCallback customerCallback;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +64,16 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
         customarViewModel.customerMutableLiveData.observe(this, new Observer<List<Customer>>() {
             @Override
             public void onChanged(List<Customer> customers) {
-                Toast.makeText(CustomerActivity.this, "cus"+customers.size(), Toast.LENGTH_SHORT).show();
+
+                List<Customer> doctorModelList = customers;
+                Toast.makeText(CustomerActivity.this, "cus" + customers.size(), Toast.LENGTH_SHORT).show();
                 setDataToRecyclerView(customers);
+
+                for (Customer i : doctorModelList) {
+                    new Customer(1, i.getStrCustomerName(), i.getStrPhone(), i.getStraddress());
+
+                    onInsertCustomarDB(i);
+                }
             }
         });
 
@@ -174,10 +184,19 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
 //
 //    }
 
-    @Override
-    public void onCustomer(Customer customerList) {
-        customarViewModel.insert(customerList);
+//    @Override
+//    public void onCustomer(Customer customerList) {
+//        customarViewModel.insert(customerList);
+//
+//    }
 
+    public void onInsertCustomarDB(Customer customers){
+        customarViewModel.insert(customers);
+    }
+
+    @Override
+    public void onCustomer(List<Customer> customerList) {
+        customarViewModel.insert((Customer) customerList);
     }
 
     @Override
@@ -193,7 +212,7 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
 //        intent.putExtra("uid",customer.getUid());
 //        startActivity(intent);
 
-        Toast.makeText(this, "Clicked -"+customer.getStrCustomerName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Clicked -" + customer.getStrCustomerName(), Toast.LENGTH_SHORT).show();
 
     }
 }
