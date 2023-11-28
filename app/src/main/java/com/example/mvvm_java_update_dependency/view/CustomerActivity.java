@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.mvvm_java_update_dependency.R;
 import com.example.mvvm_java_update_dependency.callback.CustomerCallbackList;
+import com.example.mvvm_java_update_dependency.databinding.ActivityCustomerBinding;
 import com.example.mvvm_java_update_dependency.model.Customer;
 import com.example.mvvm_java_update_dependency.viewmodel.CustomerViewModel;
 
@@ -31,21 +32,20 @@ import io.reactivex.schedulers.Schedulers;
 public class CustomerActivity extends AppCompatActivity implements CustomerCallbackList, CustomerAdapter.OnCustomerClickListener {
 
     private CustomerViewModel customarViewModel;
-    private ProgressBar mProgressBar;
-    private RecyclerView mRecyclerView;
     private CustomerAdapter customerAdapter;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
+
+    //for viewbinding
+    private ActivityCustomerBinding activityCustomerBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer);
+        //viewbinding init
+        activityCustomerBinding = ActivityCustomerBinding.inflate(getLayoutInflater());
+        setContentView(activityCustomerBinding.getRoot());
 
-        mProgressBar = findViewById(R.id.progressBar);
-        mRecyclerView = findViewById(R.id.recyclerView);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
-        mRecyclerView.setLayoutManager(gridLayoutManager);
-        mRecyclerView.setHasFixedSize(false);
+        //ViewModel Init
         customarViewModel = new ViewModelProvider(this).get(CustomerViewModel.class);
 
         //it's means call from api
@@ -68,10 +68,10 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
                 Log.d(TAG, "onChanged: " + aBoolean);
                 if (aBoolean != null) {
                     if (aBoolean) {
-                        mProgressBar.setVisibility(View.VISIBLE);
+                        activityCustomerBinding.progressBar.setVisibility(View.VISIBLE);
                         //Toast.makeText(CustomerActivity.this, "Visible", Toast.LENGTH_SHORT).show();
                     } else {
-                        mProgressBar.setVisibility(View.GONE);
+                        activityCustomerBinding.progressBar.setVisibility(View.GONE);
                         //Toast.makeText(CustomerActivity.this, "Invisible", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -118,10 +118,15 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
         customarViewModel.insert(customers);
     }
 
-    private void setDataToRecyclerView(List<Customer> genres) {
-        customerAdapter = new CustomerAdapter(genres);
+    private void setDataToRecyclerView(List<Customer> customers) {
+        customerAdapter = new CustomerAdapter(customers);
         customerAdapter.setItemClickListener(this);
-        mRecyclerView.setAdapter(customerAdapter);
+
+        //recycler set
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 1);
+        activityCustomerBinding.recyclerView.setLayoutManager(gridLayoutManager);
+        activityCustomerBinding.recyclerView.setHasFixedSize(false);
+        activityCustomerBinding.recyclerView.setAdapter(customerAdapter);
     }
 
     @Override
@@ -145,7 +150,7 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
 //     intent.putExtra("genre",customer.getGenre());
 //     intent.putExtra("uid",customer.getUid());
 //     startActivity(intent);
-       Toast.makeText(this, "Clicked -" + customer.getStrCustomerName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Clicked -" + customer.getStrCustomerName(), Toast.LENGTH_SHORT).show();
 
     }
 }
