@@ -43,6 +43,9 @@ public class CustomerViewModel extends AndroidViewModel {
             @Override
             public void onCustomerError(String error) {
                 getIsLoading().postValue(false);
+                //customerMutableLiveData.postValue(null);
+                //customerMutableLiveData = getAllCustomer();
+                //getAllCustomer();
 
             }
         });

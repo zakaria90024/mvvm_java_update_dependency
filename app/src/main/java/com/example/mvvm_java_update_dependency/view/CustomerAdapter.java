@@ -43,7 +43,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Adapte
         Customer singleGenre = genreList.get(position);
         //holder.mImageView.setImageBitmap(DataConverter.convertByteArray2Image(singleGenre.getImage()));
         holder.textViewTitle.setText(""+singleGenre.getStrCustomerName());
-        holder.textViewModifiedDate.setText(""+singleGenre.getId());
+        holder.textViewModifiedDate.setText(""+singleGenre.getStrPhone());
     }
 
 //    public Customer getGenreAt(int position){
