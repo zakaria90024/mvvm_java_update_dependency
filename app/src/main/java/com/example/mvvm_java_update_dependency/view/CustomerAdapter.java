@@ -12,16 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mvvm_java_update_dependency.R;
 import com.example.mvvm_java_update_dependency.model.Customer;
+import com.example.mvvm_java_update_dependency.utils.DataConverter;
 
 import java.util.List;
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.AdapterViewHolder> {
 
-    private List<Customer> genreList;
+    private List<Customer> customerList;
     private OnCustomerClickListener onCustomerClickListener;
 
-    public CustomerAdapter(List<Customer> genreList) {
-        this.genreList = genreList;
+    public CustomerAdapter(List<Customer> customerList) {
+        this.customerList = customerList;
     }
 
     public void setItemClickListener(OnCustomerClickListener onCustomerClickListener){
@@ -40,12 +41,13 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Adapte
     @Override
     public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
 
-        Customer singleGenre = genreList.get(position);
+        Customer singleGenre = customerList.get(position);
         //holder.mImageView.setImageBitmap(DataConverter.convertByteArray2Image(singleGenre.getImage()));
         holder.textViewTitle.setText(""+singleGenre.getStrCustomerName());
         holder.textViewModifiedDate.setText(""+singleGenre.getStrPhone());
     }
 
+//    get single row from db
 //    public Customer getGenreAt(int position){
 //        Customer genre = genreList.get(position);
 //        genre.setUid(genreList.get(position).getUid());
@@ -54,7 +56,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Adapte
 
     @Override
     public int getItemCount() {
-        return genreList.size();
+        return customerList.size();
     }
 
     public class AdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -77,12 +79,12 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Adapte
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-            Customer currentGenre = genreList.get(position);
+            Customer currentGenre = customerList.get(position);
             onGenreClickListener.onCustomerClick(currentGenre);
         }
     }
 
     public interface OnCustomerClickListener {
-        void onCustomerClick(Customer genre);
+        void onCustomerClick(Customer customerList);
     }
 }

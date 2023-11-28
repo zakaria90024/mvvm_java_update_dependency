@@ -26,13 +26,11 @@ public class CustomerImpl implements CustomerListModel {
             @Override
             public void onResponse(Call<List<Customer>> call, Response<List<Customer>> response) {
 
-                //customerCallback.onCustomer(response.body());
-
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         customerCallback.onCustomer(response.body());
                     } else {
-                        customerCallback.onCustomerError("Content Not Found");
+                        customerCallback.onCustomerError("Content Not Found! ");
                     }
 
                 }
@@ -40,7 +38,7 @@ public class CustomerImpl implements CustomerListModel {
 
             @Override
             public void onFailure(Call<List<Customer>> call, Throwable t) {
-                customerCallback.onCustomerError("Something Went Wrong!" + t.getMessage());
+                customerCallback.onCustomerError("Something Went Wrong! " + t.getMessage());
             }
         });
 

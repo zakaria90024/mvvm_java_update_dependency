@@ -19,7 +19,8 @@ import io.reactivex.Flowable;
 public class CustomerViewModel extends AndroidViewModel {
 
 
-    public final MutableLiveData<List<Customer>> customerMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<Customer>> customerMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<String> showErrorLiveData = new MutableLiveData<>();
 
     private CustomerRepository customerRepository;
     private CustomerListModel customerListModel;
@@ -43,6 +44,7 @@ public class CustomerViewModel extends AndroidViewModel {
             @Override
             public void onCustomerError(String error) {
                 getIsLoading().postValue(false);
+                showErrorLiveData.postValue(error);
                 //customerMutableLiveData.postValue(null);
                 //customerMutableLiveData = getAllCustomer();
                 //getAllCustomer();
