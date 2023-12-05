@@ -1,11 +1,8 @@
 package com.example.mvvm_java_update_dependency.callback;
 
-import android.widget.Toast;
-
 import com.example.mvvm_java_update_dependency.data.remote.APIService;
 import com.example.mvvm_java_update_dependency.model.Customer;
 import com.example.mvvm_java_update_dependency.network.ApiClient;
-import com.example.mvvm_java_update_dependency.view.CustomerActivity;
 
 import java.util.List;
 

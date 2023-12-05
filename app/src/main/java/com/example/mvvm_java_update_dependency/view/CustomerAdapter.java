@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mvvm_java_update_dependency.R;
 import com.example.mvvm_java_update_dependency.model.Customer;
-import com.example.mvvm_java_update_dependency.utils.DataConverter;
 
 import java.util.List;
 

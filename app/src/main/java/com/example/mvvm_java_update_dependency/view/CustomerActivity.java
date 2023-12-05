@@ -7,15 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.mvvm_java_update_dependency.R;
 import com.example.mvvm_java_update_dependency.callback.CustomerCallbackList;
 import com.example.mvvm_java_update_dependency.databinding.ActivityCustomerBinding;
 import com.example.mvvm_java_update_dependency.model.Customer;
@@ -145,12 +142,12 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
 
     @Override
     public void onCustomerClick(Customer customer) {
-//
+
 //     Intent intent = new Intent(CustomerActivity.this,MoviesActivity.class);
 //     intent.putExtra("genre",customer.getGenre());
 //     intent.putExtra("uid",customer.getUid());
 //     startActivity(intent);
-        Toast.makeText(this, "Clicked -" + customer.getStrCustomerName(), Toast.LENGTH_SHORT).show();
+       Toast.makeText(this, "Clicked -" + customer.getStrCustomerName(), Toast.LENGTH_SHORT).show();
 
     }
 }
