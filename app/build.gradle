@@ -1,7 +1,7 @@
+
 plugins {
     id 'com.android.application'
 }
-
 android {
     namespace 'com.example.mvvm_java_update_dependency'
     compileSdk 34
@@ -69,8 +69,20 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
     //dagger for dependency injection
-    implementation "com.google.dagger:dagger:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    //implementation "com.google.dagger:dagger:$dagger_version"
+    //implementation "com.google.dagger:dagger-compiler:$dagger_version"
+
+//    implementation 'com.google.dagger:dagger-android:2.11'
+//    implementation 'com.google.dagger:dagger-android-support:2.11'
+//    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11'
+//    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+
+    implementation "com.google.dagger:hilt-android:2.44"
+
+
+
+
+
 
 
 }

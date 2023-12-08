@@ -14,16 +14,17 @@ import com.example.mvvm_java_update_dependency.repository.CustomerRepository;
 
 import java.util.List;
 
+import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.Flowable;
-
+@HiltViewModel
 public class CustomerViewModel extends AndroidViewModel {
 
 
     public MutableLiveData<List<Customer>> customerMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<String> showErrorLiveData = new MutableLiveData<>();
-
     private CustomerRepository customerRepository;
     private CustomerListModel customerListModel;
+
     public CustomerViewModel(@NonNull Application application) {
         super(application);
         customerRepository = new CustomerRepository(application);

@@ -15,10 +15,13 @@ import android.widget.Toast;
 
 import com.example.mvvm_java_update_dependency.callback.CustomerCallbackList;
 import com.example.mvvm_java_update_dependency.databinding.ActivityCustomerBinding;
+import com.example.mvvm_java_update_dependency.di.module.ApplicationComponent;
 import com.example.mvvm_java_update_dependency.model.Customer;
 import com.example.mvvm_java_update_dependency.viewmodel.CustomerViewModel;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -28,7 +31,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class CustomerActivity extends AppCompatActivity implements CustomerCallbackList, CustomerAdapter.OnCustomerClickListener {
 
-    private CustomerViewModel customarViewModel;
+
+    @Inject
+    public CustomerViewModel customarViewModel;
     private CustomerAdapter customerAdapter;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -38,6 +43,7 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //viewbinding init
         activityCustomerBinding = ActivityCustomerBinding.inflate(getLayoutInflater());
         setContentView(activityCustomerBinding.getRoot());
