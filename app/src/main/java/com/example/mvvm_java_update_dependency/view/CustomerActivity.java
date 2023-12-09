@@ -23,12 +23,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+@AndroidEntryPoint
 public class CustomerActivity extends AppCompatActivity implements CustomerCallbackList, CustomerAdapter.OnCustomerClickListener {
 
 
@@ -43,6 +45,9 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
 
         //viewbinding init
         activityCustomerBinding = ActivityCustomerBinding.inflate(getLayoutInflater());

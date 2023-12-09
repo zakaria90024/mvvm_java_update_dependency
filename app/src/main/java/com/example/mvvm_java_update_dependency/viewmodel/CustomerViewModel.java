@@ -14,8 +14,11 @@ import com.example.mvvm_java_update_dependency.repository.CustomerRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.Flowable;
+
 @HiltViewModel
 public class CustomerViewModel extends AndroidViewModel {
 
@@ -25,6 +28,7 @@ public class CustomerViewModel extends AndroidViewModel {
     private CustomerRepository customerRepository;
     private CustomerListModel customerListModel;
 
+    @Inject
     public CustomerViewModel(@NonNull Application application) {
         super(application);
         customerRepository = new CustomerRepository(application);
