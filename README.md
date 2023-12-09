@@ -6,5 +6,5 @@ Java MVVM template, update dependancy.
 - RxJava
 - Room Database
 - Retrofit, Api Call 
-- Local Restore data
+- Local DB Restore data
 - ViewBinding, BuildConfig
