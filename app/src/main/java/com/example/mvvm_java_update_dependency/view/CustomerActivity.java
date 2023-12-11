@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.example.mvvm_java_update_dependency.callback.CustomerCallbackList;
 import com.example.mvvm_java_update_dependency.databinding.ActivityCustomerBinding;
-import com.example.mvvm_java_update_dependency.di.module.ApplicationComponent;
 import com.example.mvvm_java_update_dependency.model.Customer;
 import com.example.mvvm_java_update_dependency.viewmodel.CustomerViewModel;
 

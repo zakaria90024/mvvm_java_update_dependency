@@ -43,8 +43,8 @@ public abstract class BaseFragment<ViewModel extends BaseViewModel> extends Frag
 
 
 
-    public void startActivity(Class clas, Bundle bundle) {
-        communicator.startActivity(clas, bundle);
+    public void startActivity(Class cls, Bundle bundle) {
+        communicator.startActivity(cls, bundle);
 
     }
 
