@@ -16,7 +16,7 @@ public class BaseViewModel extends ViewModel implements IViewModel {
 
     @Override
     public void onAny(LifecycleOwner lifecycleOwner, Lifecycle.Event event) {
-        Logger.d(""+event);
+        Logger.d("test"+event);
 
     }
 

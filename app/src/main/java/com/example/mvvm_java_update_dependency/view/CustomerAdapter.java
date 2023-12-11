@@ -73,6 +73,9 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Adapte
             textViewModifiedDate = itemView.findViewById(R.id.textViewModifiedDate);
             constaintLayout = itemView.findViewById(R.id.constaintLayout);
             constaintLayout.setOnClickListener(this);
+
+
+
         }
 
         @Override

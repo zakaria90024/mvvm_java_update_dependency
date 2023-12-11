@@ -15,7 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class CustomerFragment extends Fragment {
 
-
     public CustomerFragment() {
         // Required empty public constructor
     }
