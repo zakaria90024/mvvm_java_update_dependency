@@ -18,7 +18,6 @@ public class CustomerImpl implements CustomerListModel {
 
 
         Call<List<Customer>> call = service.getCustomer("259");
-
         call.enqueue(new Callback<List<Customer>>() {
             @Override
             public void onResponse(Call<List<Customer>> call, Response<List<Customer>> response) {

@@ -13,8 +13,6 @@ import javax.inject.Inject;
 public  abstract  class BaseActivity<ViewModel extends BaseViewModel> extends AppCompatActivity implements BaseFragmentCommunicator {
 
 
-
-
     protected  ViewModel viewModel;
 
     @NonNull
@@ -24,9 +22,8 @@ public  abstract  class BaseActivity<ViewModel extends BaseViewModel> extends Ap
 //    protected abstract BINDING createViewBinding(LayoutInflater layoutInflater);
 //
 
-
-
-    int  getLayOutId;
+    @NonNull
+    protected  int  getLayOutId;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
