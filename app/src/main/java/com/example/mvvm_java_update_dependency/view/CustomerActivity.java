@@ -157,7 +157,7 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
 //     intent.putExtra("genre",customer.getGenre());
 //     intent.putExtra("uid",customer.getUid());
 //     startActivity(intent);
-       Toast.makeText(this, "Clicked -" + customer.getStrCustomerName(), Toast.LENGTH_SHORT).show();
+       Toast.makeText(this, "Click-" + customer.getStrCustomerName(), Toast.LENGTH_SHORT).show();
 
     }
 }
