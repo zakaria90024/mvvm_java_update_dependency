@@ -1,6 +1,10 @@
 package com.example.mvvm_java_update_dependency.viewmodel;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Application;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -11,15 +15,19 @@ import com.example.mvvm_java_update_dependency.callback.CustomerImpl;
 import com.example.mvvm_java_update_dependency.callback.CustomerListModel;
 import com.example.mvvm_java_update_dependency.model.Customer;
 import com.example.mvvm_java_update_dependency.repository.CustomerRepository;
+import com.example.mvvm_java_update_dependency.view.CustomerActivity;
 
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
-import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
-@HiltViewModel
 public class CustomerViewModel extends AndroidViewModel {
 
 
@@ -35,7 +43,7 @@ public class CustomerViewModel extends AndroidViewModel {
         customerListModel = new CustomerImpl();
     }
 
-    public void getCustomerAll(){
+    public void getCustomerAll() {
         getIsLoading().postValue(true);
 
         customerListModel.getCustomerList(new CustomerCallbackList() {
@@ -44,12 +52,17 @@ public class CustomerViewModel extends AndroidViewModel {
                 getIsLoading().postValue(false);
                 customerMutableLiveData.postValue(customerList);
 
+
+
+
+
             }
 
             @Override
             public void onCustomerError(String error) {
                 getIsLoading().postValue(false);
                 showErrorLiveData.postValue(error);
+
                 //customerMutableLiveData.postValue(null);
                 //customerMutableLiveData = getAllCustomer();
                 //getAllCustomer();
@@ -60,29 +73,41 @@ public class CustomerViewModel extends AndroidViewModel {
 
 
     //Get Loading State
-    public MutableLiveData<Boolean> getIsLoading(){
+    public MutableLiveData<Boolean> getIsLoading() {
         return customerRepository.getIsLoading();
     }
 
 
     //get all customer
-    public Flowable<List<Customer>> getAllCustomer(){
+    public Flowable<List<Customer>> getAllCustomerLocal() {
         return customerRepository.getAllCustomer();
     }
 
+
+
+    //not allow room main thread
+    public List<Customer> getAllCustomerLocalList() {
+        return customerRepository.getAllCustomerList();
+    }
+
+
     //Insert customer
-    public void insert(Customer customer){
+    public void insert(Customer customer) {
         customerRepository.insertCustomer(customer);
     }
 
     //Update customer
-    public void update(Customer customer){
+    public void update(Customer customer) {
         customerRepository.updateCustomer(customer);
     }
 
     //Delete customer
-    public void delete(Customer customer){
+    public void delete(Customer customer) {
         customerRepository.deleteCustomer(customer);
+    }
+
+    public void deleteAllCustomer() {
+        customerRepository.deleteAllCustomer();
     }
 
 //

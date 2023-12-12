@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
-        android:name=".ui.BaseApplication"
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,9 +17,9 @@
         android:theme="@style/Theme.Mvvm_java_update_dependency"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".view.CustomerActivityImp"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".view.CustomerActivityImp"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".view.CustomerActivity"
             android:exported="true">

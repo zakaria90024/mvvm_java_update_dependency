@@ -29,11 +29,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-@AndroidEntryPoint
 public class CustomerActivity extends AppCompatActivity implements CustomerCallbackList, CustomerAdapter.OnCustomerClickListener {
 
 
-    @Inject
     public CustomerViewModel customarViewModel;
     private CustomerAdapter customerAdapter;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
@@ -65,6 +63,7 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
             public void onChanged(List<Customer> customers) {
                 Toast.makeText(CustomerActivity.this, "Total - " + customers.size(), Toast.LENGTH_SHORT).show();
                 setDataToRecyclerView(customers);
+                onCustomer(customers);
             }
         });
 
@@ -95,7 +94,7 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
                 //get from local db data
                 Toast.makeText(CustomerActivity.this, "" + s, Toast.LENGTH_SHORT).show();
 
-                Disposable disposable = customarViewModel.getAllCustomer().subscribeOn(Schedulers.io())
+                Disposable disposable = customarViewModel.getAllCustomerLocal().subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<List<Customer>>() {
                             @Override
                             public void accept(List<Customer> customers) throws Exception {
@@ -138,6 +137,7 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
 
     @Override
     public void onCustomer(List<Customer> customerList) {
+        Toast.makeText(this, "Ca"+customerList.size(), Toast.LENGTH_SHORT).show();
         List<Customer> doctorModelList = customerList;
         for (Customer i : doctorModelList) {
             new Customer(0, i.getStrCustomerName(), i.getStrPhone(), i.getStraddress());

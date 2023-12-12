@@ -11,7 +11,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.mvvm_java_update_dependency.database.dao.CustomerDao;
 import com.example.mvvm_java_update_dependency.model.Customer;
 
-@Database(entities = {Customer.class}, version = 1,exportSchema = false)
+@Database(entities = {Customer.class}, version = 2,exportSchema = false)
 public abstract class CustomerDatabase extends RoomDatabase {
 
     private static CustomerDatabase instance;

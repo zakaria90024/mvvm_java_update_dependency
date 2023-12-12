@@ -35,4 +35,8 @@ public interface CustomerDao {
     //Get all Genre from table
     @Query("SELECT * FROM customer_table")
     Flowable<List<Customer>> getAllCustomer();
+
+
+    @Query("SELECT * FROM customer_table")
+    List<Customer> getAllCustomerList();
 }

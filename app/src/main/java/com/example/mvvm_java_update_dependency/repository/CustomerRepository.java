@@ -43,6 +43,10 @@ public class CustomerRepository {
         return customerDao.getAllCustomer();
     }
 
+    public List<Customer> getAllCustomerList(){
+        return customerDao.getAllCustomerList();
+    }
+
     //Get Loading State
     public MutableLiveData<Boolean> getIsLoading(){
         return isLoading;
