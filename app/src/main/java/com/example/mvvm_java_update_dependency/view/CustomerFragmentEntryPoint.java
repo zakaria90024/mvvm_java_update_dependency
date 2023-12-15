@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mvvm_java_update_dependency.R;
+import com.example.mvvm_java_update_dependency.ui.BaseFragment;
+import com.example.mvvm_java_update_dependency.ui.BaseViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
 

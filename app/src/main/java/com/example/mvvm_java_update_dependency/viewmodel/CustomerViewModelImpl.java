@@ -4,6 +4,7 @@ import com.example.mvvm_java_update_dependency.ui.BaseViewModel;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
+@HiltViewModel
 public class CustomerViewModelImpl extends BaseViewModel {
 
 
