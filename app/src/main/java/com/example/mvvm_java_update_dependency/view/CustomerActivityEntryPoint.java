@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 
 @AndroidEntryPoint
-public class CustomerActivityImp extends BaseActivity {
+public class CustomerActivityEntryPoint extends BaseActivity {
 
     @NonNull
     @Override

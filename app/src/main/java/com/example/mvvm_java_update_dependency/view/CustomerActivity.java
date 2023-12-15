@@ -44,8 +44,6 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
         super.onCreate(savedInstanceState);
 
 
-
-
         //viewbinding init
         activityCustomerBinding = ActivityCustomerBinding.inflate(getLayoutInflater());
         setContentView(activityCustomerBinding.getRoot());
@@ -67,7 +65,7 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
             }
         });
 
-        //Check Loading Progresbar
+        //Check Loading Progressbar
         customarViewModel.getIsLoading().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(@Nullable Boolean aBoolean) {

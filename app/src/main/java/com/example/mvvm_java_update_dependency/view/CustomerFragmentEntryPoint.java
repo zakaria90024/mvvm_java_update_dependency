@@ -13,9 +13,9 @@ import com.example.mvvm_java_update_dependency.R;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class CustomerFragment extends Fragment {
+public class CustomerFragmentEntryPoint extends Fragment {
 
-    public CustomerFragment() {
+    public CustomerFragmentEntryPoint() {
         // Required empty public constructor
     }
 
