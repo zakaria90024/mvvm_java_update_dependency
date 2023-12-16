@@ -19,15 +19,15 @@ public interface MessageDao {
 
     //Insert new Genre
     @Insert
-    void insert(MessageDao message);
+    void insert(List<Message> message);
 
     //Update existing Genre
     @Update
-    void update(MessageDao message);
+    void update(List<Message> message);
 
     //Delete Specific Genre and also delete movies under this genre
     @Delete
-    void delete(MessageDao message);
+    void delete(List<Message> message);
 
     //Delete all Genre from table
     @Query("DELETE FROM table_message")
