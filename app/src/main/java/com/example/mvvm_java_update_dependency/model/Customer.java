@@ -3,7 +3,7 @@ package com.example.mvvm_java_update_dependency.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "customer_table")
+@Entity(tableName = "table_customer")
 public class Customer {
 
     @PrimaryKey(autoGenerate = true)

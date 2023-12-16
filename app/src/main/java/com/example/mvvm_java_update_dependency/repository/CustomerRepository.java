@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvm_java_update_dependency.database.CustomerDatabase;
 import com.example.mvvm_java_update_dependency.database.dao.CustomerDao;
+import com.example.mvvm_java_update_dependency.database.dao.MessageDao;
 import com.example.mvvm_java_update_dependency.model.Customer;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class CustomerRepository {
     private static final String TAG = "MovieRepository";
 
     private CustomerDao customerDao;
+    private MessageDao messageDao;
     //private MovieDao movieDao;
     private Flowable<List<CustomerDao>> allGenres;
     //private Flowable<List<Movie>> allMovies;
@@ -34,6 +36,7 @@ public class CustomerRepository {
     public CustomerRepository(Application application){
         CustomerDatabase movieDatabase = CustomerDatabase.getInstance(application);
         customerDao = movieDatabase.customerDao();
+        messageDao = movieDatabase.messageDao();
         //movieDao = movieDatabase.movieDao();
 
     }
