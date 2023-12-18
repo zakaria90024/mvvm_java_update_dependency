@@ -52,10 +52,6 @@ public class CustomerViewModel extends AndroidViewModel {
                 getIsLoading().postValue(false);
                 customerMutableLiveData.postValue(customerList);
 
-
-
-
-
             }
 
             @Override

@@ -74,8 +74,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Adapte
             constaintLayout = itemView.findViewById(R.id.constaintLayout);
             constaintLayout.setOnClickListener(this);
 
-
-
         }
 
         @Override
