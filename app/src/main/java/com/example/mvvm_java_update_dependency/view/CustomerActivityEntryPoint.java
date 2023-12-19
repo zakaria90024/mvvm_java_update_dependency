@@ -1,5 +1,6 @@
 package com.example.mvvm_java_update_dependency.view;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
@@ -14,10 +15,12 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class CustomerActivityEntryPoint extends BaseActivity {
 
+
     @NonNull
     @Override
     protected BaseViewModel createViewModel() {
 
+        Log.d("s", "started ViewModel");
         viewModel = new CustomerViewModelImpl();
         return null;
     }
@@ -28,5 +31,6 @@ public class CustomerActivityEntryPoint extends BaseActivity {
         binding = createViewBinding(layoutInflater);
         return binding;
     }
+
 
 }
