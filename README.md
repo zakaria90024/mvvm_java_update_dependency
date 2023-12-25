@@ -8,4 +8,4 @@ Java MVVM template, update dependancy.
 - Retrofit, Api Call 
 - Local DB Restore data
 - ViewBinding, BuildConfig
-- Hilt, Update
+- Hilt, Updated
