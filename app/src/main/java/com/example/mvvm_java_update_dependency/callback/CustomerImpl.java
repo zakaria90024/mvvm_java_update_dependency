@@ -27,7 +27,7 @@ public class CustomerImpl implements CustomerListModel {
                         customerCallback.onCustomer(response.body());
 
                     } else {
-                        customerCallback.onCustomerError("Content Not Found! ");
+                        customerCallback.onCustomerError("Content Not Found!!");
                     }
 
                 }
