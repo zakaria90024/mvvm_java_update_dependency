@@ -35,7 +35,7 @@ public class CustomerImpl implements CustomerListModel {
 
             @Override
             public void onFailure(Call<List<Customer>> call, Throwable t) {
-                customerCallback.onCustomerError("Something Went Wrong! " + t.getMessage());
+                customerCallback.onCustomerError("Something Went Wrong!" + t.getMessage());
             }
         });
 
