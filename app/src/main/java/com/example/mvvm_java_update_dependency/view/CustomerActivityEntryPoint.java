@@ -15,7 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class CustomerActivityEntryPoint extends BaseActivity {
 
-
     @NonNull
     @Override
     protected BaseViewModel createViewModel() {
