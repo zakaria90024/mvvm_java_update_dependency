@@ -20,7 +20,7 @@ public class CustomerActivityEntryPoint extends BaseActivity {
     @Override
     protected BaseViewModel createViewModel() {
 
-        Log.d("s", "started ViewModel");
+        Log.d("entryPoint", "started ViewModel");
         viewModel = new CustomerViewModelImpl();
         return null;
     }
