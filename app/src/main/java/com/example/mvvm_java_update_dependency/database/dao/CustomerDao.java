@@ -8,6 +8,7 @@ import androidx.room.Update;
 
 import com.example.mvvm_java_update_dependency.model.Customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -39,4 +40,14 @@ public interface CustomerDao {
 
     @Query("SELECT * FROM table_customer")
     List<Customer> getAllCustomerList();
+
+
+    //Get Customer With Id
+    @Query("SELECT * FROM table_customer WHERE id LIKE :id")
+    Flowable<List<Customer>> getCustomerWithId(int id);
+
+
+    //Delete customer by id
+    @Query("DELETE FROM table_customer WHERE id==:id")
+    void deleteAllById(int id);
 }
