@@ -17,4 +17,7 @@ public interface APIService {
     @GET
     Call<List<String>> getCustomerStrin(@Path("id") String id);
 
+    @GET
+    Call<String> getString();
+
 }
