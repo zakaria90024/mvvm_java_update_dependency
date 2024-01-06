@@ -1,6 +1,6 @@
 package com.example.mvvm_java_update_dependency.viewmodel;
 
-import static android.content.ContentValues.TAG;
+  import static android.content.ContentValues.TAG;
 
 import android.app.Application;
 import android.util.Log;
