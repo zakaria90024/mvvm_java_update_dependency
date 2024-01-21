@@ -19,8 +19,7 @@ import dagger.hilt.components.SingletonComponent;
 @InstallIn(SingletonComponent.class)
 public class MainDiModule {
 
-
-    //its for api interface
+//its for api interface
 //    @Provides
 //    @Singleton
 //    public MessageNetworkService provideMessageNetworkService(@ApplicationContext Context context) {
