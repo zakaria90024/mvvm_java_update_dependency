@@ -12,7 +12,7 @@ import androidx.viewbinding.ViewBinding;
 
 import javax.inject.Inject;
 
-//if extends this must need Binding, VievModel refference
+//if extends this must need Binding, ViewModel Refference
 public  abstract  class BaseActivity<BINDING extends ViewBinding, ViewModel extends BaseViewModel> extends AppCompatActivity implements BaseFragmentCommunicator {
 
 
