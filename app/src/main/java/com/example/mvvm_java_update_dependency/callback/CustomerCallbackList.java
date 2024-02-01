@@ -7,6 +7,4 @@ import java.util.List;
 public interface CustomerCallbackList {
     void onCustomer(List<Customer> customerList);
     void onCustomerError(String error);
-
-
 }
