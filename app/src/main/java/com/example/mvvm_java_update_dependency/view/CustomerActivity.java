@@ -18,7 +18,9 @@ import com.example.mvvm_java_update_dependency.databinding.ActivityCustomerBindi
 import com.example.mvvm_java_update_dependency.model.Customer;
 import com.example.mvvm_java_update_dependency.viewmodel.CustomerViewModel;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -94,6 +96,7 @@ public class CustomerActivity extends AppCompatActivity implements CustomerCallb
 
                 Disposable disposable = customarViewModel.getAllCustomerLocal().subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<List<Customer>>() {
+
                             @Override
                             public void accept(List<Customer> customers) throws Exception {
                                 Log.d(TAG, "accept: Called");
